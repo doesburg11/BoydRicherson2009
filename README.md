@@ -13,6 +13,32 @@ replications ([MitteldorfWilson2000](https://github.com/doesburg11/MitteldorfWil
 a standalone, from-scratch implementation built directly from the paper's
 text, with no author-released code to check against.
 
+## What `m` And `s` Mean
+
+The whole model is a tug-of-war between two forces pulling in opposite
+directions:
+
+- **`s` (selection coefficient)**: how strongly a trait variant is
+  favored once it's locally common. Each of the 3 traits is
+  frequency-dependent — whichever variant a subpopulation already has
+  more of gets pulled further toward that side each generation. This
+  force *creates and preserves* differences between neighboring
+  subpopulations.
+- **`m` (migration rate)**: what fraction of a subpopulation's members
+  are replaced by immigrants from its 4 nearest neighbors each
+  generation. This force *erases* differences between neighbors by
+  pulling each subpopulation toward whatever its neighbors have.
+
+The `m/s` ratio decides which force wins. High `m/s`: migration wins,
+so neighbors converge and eventually the whole population shares one
+value (panel a). Low `m/s`: selection wins, so subpopulations lock onto
+their own local extreme faster than migration can average them out,
+leaving standing variation between groups (panel c). That standing
+variation between groups is the entire point of the paper — it's the
+raw material cultural group selection has to work with, and the paper's
+argument is that *culture* can sustain high `s` relative to `m` (fast
+local adaptation) in a way genetics typically can't.
+
 ## What The Paper's Model Argues
 
 The paper's central claim is that **cultural** adaptation is far faster
