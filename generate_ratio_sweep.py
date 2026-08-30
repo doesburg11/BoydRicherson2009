@@ -18,6 +18,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 
+from legend import add_trait_legend
 from model import residual, simulate
 
 S = 0.05
@@ -43,10 +44,11 @@ def main() -> None:
         f"(s={S}, seed={SEED}, 16x16 torus, 3 binary traits, "
         f"{GENERATIONS:,} generations)"
     )
+    fig.tight_layout(rect=(0, 0.12, 1, 1))
+    add_trait_legend(fig)
     out_dir = Path(__file__).parent / "output"
     out_dir.mkdir(exist_ok=True)
     out_path = out_dir / "ratio_sweep.png"
-    fig.tight_layout()
     fig.savefig(out_path, dpi=150)
     print(f"Saved {out_path}")
 
