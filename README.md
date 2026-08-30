@@ -78,6 +78,47 @@ observed in other primates. Run at culture's much lower effective
 material the paper's larger argument about cultural group selection
 depends on.
 
+### Why Doesn't Culture Converge To One Shared Culture Eventually?
+
+Two things in the model keep it from collapsing to a single global
+culture, and both point back to mechanisms already described above:
+
+1. **Conformist transmission is the "stable when common" property
+   itself.** A rare deviant or newcomer with a different custom is a
+   small local minority who gets pulled back toward the local norm, not
+   the other way around — there are real payoffs to fitting in
+   (reputation, cooperation, avoiding sanction for deviating). A little
+   outside contact doesn't flip a group; it takes contact strong enough
+   to overwhelm that local restoring force, which is exactly what
+   `m >= s` means.
+2. **Migration moves people, not culture — assimilation is asymmetric.**
+   A migrant's genes move with them unconditionally and mix into the
+   new gene pool; their culture usually doesn't move the same way,
+   because they tend to assimilate to the host group's norms rather
+   than converting the host group to theirs. So even where a lot of
+   people-movement happens, very little cultural difference-erosion
+   happens — the effective `m` for culture stays low even under heavy
+   physical migration.
+
+As long as both hold, low `m/s` is a genuine *stable equilibrium* here,
+not a slow transient waiting to catch up — the same way the "Panel
+Selection" section above found `m/s=0.1`'s patchwork to be an actual
+fixed point (residual `0.0`), not an under-converged snapshot.
+
+This is not a claim that culture is immune to homogenization, though.
+If contact becomes strong and sustained enough — empire-scale conquest
+with forced assimilation, mass media, modern globalization — the
+effective `m` can rise past that threshold, and the model predicts
+convergence, which is exactly what's observed historically: language
+extinction, dominant religions spreading, globalized consumer culture.
+The model's claim is only that this requires unusually strong,
+sustained contact — ordinary contact between neighboring groups
+throughout most of human history wasn't enough to overcome locally
+reinforced conformity, which is the paper's own explanation for why the
+patchwork of languages, norms, and institutions it opens with (in
+contrast to other primates) was able to persist and diversify rather
+than collapse to one shared culture.
+
 ## What The Paper's Model Argues
 
 The paper's central claim is that **cultural** adaptation is far faster
