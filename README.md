@@ -198,6 +198,24 @@ seed sweeps described here are the honest record of what a "typical" or
   what `m/s=0.2` looks like instead, which clusters much more but
   departs from the paper's stated ratio).
 
+## Supplementary: Full m/s Sweep
+
+Not a reproduction of anything in the paper — the paper only shows the
+three example ratios above. `generate_ratio_sweep.py` instead sweeps
+`m/s = 0.1, 0.2, ..., 1.0` at one fixed seed (0), so the transition from
+patchwork to homogenization can be read directly as a continuous
+progression rather than inferred from three snapshots:
+
+![m/s ratio sweep](output/ratio_sweep.png)
+
+Uses 100,000 generations rather than 20,000: `m/s=0.8` at seed 0 has a
+nonzero residual (`3.39e-05`) at 20,000 generations but exactly `0.0` by
+100,000, so the longer budget was used to guarantee every panel here is
+a genuine equilibrium. Notice that even at `m/s=1.0`, this seed has not
+fully homogenized — three bands remain (yellow / white / yellow-green /
+green) — which is the same seed-dependence documented in the
+calibration table above, just visualized as a sweep instead of a table.
+
 ## What This Model Does Not Show
 
 This is a replication of the paper's **illustrative toy model** only
