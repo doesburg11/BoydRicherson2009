@@ -39,6 +39,45 @@ raw material cultural group selection has to work with, and the paper's
 argument is that *culture* can sustain high `s` relative to `m` (fast
 local adaptation) in a way genetics typically can't.
 
+### Why Genetics Is Different: Same Model, Different `m/s`
+
+This is not about trait count or a genetics-specific version of the
+model — the same 3-trait, migration/selection setup applies to genetic
+or cultural traits equally. The paper's actual argument is about which
+`m/s` ratio each process can realistically achieve.
+
+**For genetics**, the paper cites real numbers: in most primate
+species, one sex disperses at maturity, giving migration rates "of the
+order of 25 per cent per generation," while typical selection
+coefficients on behavioral traits are weak, "of the order of 1 per
+cent." That's `m/s ≈ 25` — deep in panel (a)'s territory. This is the
+paper's own explanation for why other primate groups show little
+heritable behavioral variation between groups: genetically, migration
+overwhelms selection almost everywhere, so groups homogenize before any
+lasting difference can build up.
+
+**For culture**, both sides of the ratio shift in culture's favor:
+
+1. Cultural adaptation (learning, imitation) can be far faster than
+   genetic selection — a group can shift a shared norm within a single
+   generation, something genetic selection at ~1% per generation
+   cannot do. This raises the effective `s`.
+2. Migrants don't carry their culture with them the way they carry
+   their genes. A person who moves into a new group can *assimilate* —
+   adopt local norms — while their genes stay fixed. The paper states
+   this explicitly: "even very high rates of physical migration need
+   not result in the erosion of cultural differences," because
+   newcomers get "socialized by conformity or punishment" after
+   arrival. This lowers the effective `m` for culture even when actual
+   people-migration is just as high as it is genetically.
+
+So the same mechanics, run at genetics' realistic `m/s ≈ 25`, predict
+homogenization — matching the low between-group variation actually
+observed in other primates. Run at culture's much lower effective
+`m/s`, they predict persistent between-group variation — the raw
+material the paper's larger argument about cultural group selection
+depends on.
+
 ## What The Paper's Model Argues
 
 The paper's central claim is that **cultural** adaptation is far faster
