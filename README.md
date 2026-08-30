@@ -1,0 +1,184 @@
+# BoydRicherson2009
+
+A from-scratch, independently reviewed replication of the illustrative
+model in Section 3(b)-(c) of:
+
+> Boyd, R., & Richerson, P. J. (2009). Culture and the evolution of human
+> cooperation. *Philosophical Transactions of the Royal Society B*, 364,
+> 3281-3288. https://doi.org/10.1098/rstb.2009.0134
+
+This follows the same pattern as this author's other named-paper
+replications ([MitteldorfWilson2000](https://github.com/doesburg11/MitteldorfWilson2000),
+[AckleyLittman1994](https://github.com/doesburg11/AckleyLittman1994)):
+a standalone, from-scratch implementation built directly from the paper's
+text, with no author-released code to check against.
+
+## What The Paper's Model Argues
+
+The paper's central claim is that **cultural** adaptation is far faster
+than genetic adaptation, so it can maintain much more heritable variation
+between groups than genetic drift/selection alone typically can in other
+primates. That standing variation between groups is the raw material
+cultural group selection acts on. Section 3(b) illustrates this with a
+minimal model:
+
+- three independent binary traits, each with two variants (0 and 1)
+- each variant is evolutionarily stable when locally common — there are
+  eight stable equilibria, one per corner of `{0,1}^3`
+- the population is subdivided into 256 subpopulations on a 16x16 torus
+- each subpopulation exchanges a fraction `m` of its members with its
+  four nearest neighbours every generation (stepping-stone migration)
+- the within-group selection coefficient per trait is `s`
+- initial frequencies are random per subpopulation
+- outcome is plotted with each subpopulation's frequency vector
+  `(p1, p2, p3)` mapped directly to an RGB colour
+
+The paper's Figure 1 shows three regimes:
+
+- **(a) `m >= s`**: migration dominates, so the whole population evolves
+  toward whichever combination was initially more common — one colour
+  everywhere.
+- **(b) `2m = s`**: simple clines persist at equilibrium.
+- **(c) `10m = s`**: complex small-scale variation persists at
+  equilibrium.
+
+## What This Repository Implements
+
+`model.py` implements:
+
+- `selection_step`: a standard bistable local recursion,
+  `p' = p + s*p*(1-p)*(2p-1)`, with stable fixed points at `p=0` and
+  `p=1` and an unstable fixed point at `p=0.5` — this is the simplest
+  map matching the paper's "evolutionarily stable when common" property.
+- `migration_step`: stepping-stone diffusion on a torus,
+  `p_new = (1-m)*p + m*mean(4 nearest neighbours)` — the standard island
+  model discretization of "exchange a fraction `m` of members with the
+  four nearest neighbours."
+- `simulate`: alternates selection and migration for a fixed number of
+  generations from a random initial condition.
+
+`generate_figure.py` reproduces the paper's three-panel figure.
+
+## Calibration Note (Read Before Trusting The Numbers)
+
+**The paper does not publish an exact discrete recursion, source code,
+or supplementary model.** It states only that each variant is "stable
+when common" and gives a selection coefficient `s` and migration
+fraction `m`, without specifying the functional form of either the
+selection map or the exact migration formula. This is a genuine gap in
+what can be replicated with certainty — there could be other reasonable
+choices of local selection map (e.g., a steeper or shallower bistable
+function, or a discrete threshold rule) that are also consistent with
+the paper's prose but behave quantitatively differently.
+
+Given that gap, this repository makes an explicit, documented choice:
+the simplest standard bistable map for selection, and the simplest
+standard stepping-stone diffusion for migration (see above).
+
+**These middle ratios are seed-dependent, not deterministic.** A sweep
+of 20 random seeds at each `m/s` ratio (`s=0.05`, 20,000 generations,
+"fully homogenized" meaning every trait's spatial standard deviation is
+effectively zero) found:
+
+| `m/s` | Fully homogenized (of 20 seeds) |
+|-------|----------------------------------|
+| 5     | 20/20 |
+| 2     | 11/20 |
+| 1     | 9/20 |
+| 0.5   | 6/20 |
+| 0.1   | 0/20 |
+
+So `m/s=1`, the paper's own stated boundary for full homogenization
+(`m>=s`), is closer to a coin flip in this implementation than a firm
+threshold — whether a given trait fully homogenizes or gets stuck in a
+persistent partial pattern depends on the specific random initial
+condition, not just the `m/s` ratio. This was confirmed with an
+independent model (OpenAI Codex) reviewing this analysis, which ran its
+own 20-seed sweep and found the same split (11/20 at `m/s=2`, 9/20 at
+`m/s=1`). For the one specific seed used in the figure below (seed 0),
+`m/s=1` does not homogenize even after 300,000 generations — 15x more
+than used to produce the figure — and repeated runs confirm this is a
+genuine stable fixed point of the combined map, not slow convergence.
+
+This means the paper's own labels (`m>=s` for full homogenization,
+`2m=s` for clines, `10m=s` for patchwork) do not transfer as a sharp
+deterministic threshold to this specific discretization, whether or not
+that threshold is sharp in the paper's own (unpublished) discretization.
+
+`generate_figure.py` therefore uses `m/s ∈ {5, 1, 0.1}` and a fixed
+seed (0), calibrated against *this specific run* to cleanly illustrate
+the paper's three *qualitative* regimes (uniform / cline / patchwork).
+Read the panel labels as "this is one representative outcome at this
+ratio," not "this ratio deterministically produces this pattern." The
+qualitative claim the paper makes — that decreasing migration relative
+to selection increases persistent spatial variation between groups — is
+well supported by the *distribution* of outcomes across seeds in the
+table above (monotonically decreasing homogenization rate as `m/s`
+falls); the exact numeric location of the threshold is not independently
+verifiable without the paper's own code.
+
+## Result
+
+![Figure 1 replication](output/figure1_replication.png)
+
+- **(a) `m/s = 5`**: migration dominant. All three traits converge to a
+  single combination everywhere — solid colour.
+- **(b) `m/s = 1`**: balanced. One trait has fully homogenized; the
+  other two have not, producing a smooth gradient (cline).
+- **(c) `m/s = 0.1`**: selection dominant. No trait homogenizes;
+  complex, stable, small-scale spatial variation persists — this is the
+  standing between-group cultural variation the paper's larger argument
+  depends on.
+
+## What This Model Does Not Show
+
+This is a replication of the paper's **illustrative toy model** only
+(Section 3b-c, Figure 1) — the part of the paper with enough
+quantitative specification to actually implement. The paper's larger,
+substantive arguments (cultural group selection via intergroup
+competition, payoff-biased migration/"voting with your feet," and the
+gene-culture coevolution of new social instincts) are qualitative and
+historical/anthropological (e.g. the Nuer-Dinka and New Guinea
+examples), not computational models with parameters to reproduce. The
+"voting with your feet" migration model the paper references in
+passing is a *different*, later paper (Boyd & Richerson, *J. Theor.
+Biol.* 257:331-339, 2009) and is out of scope here.
+
+## Running It
+
+```bash
+python3 generate_figure.py
+```
+
+Requires `numpy` and `matplotlib`. Prints the residual (max change one
+more generation would make) for each panel alongside saving the figure,
+as a basic equilibrium sanity check.
+
+## Tests
+
+```bash
+python3 -m pytest test_model.py -v
+```
+
+Covers `selection_step` and `migration_step` fixed points, domain
+validation, torus wraparound, and `simulate` reproducibility, plus two
+regression checks that the strong- and weak-migration regimes stay on
+opposite sides of full homogenization for seed 0.
+
+## Independent Review
+
+This implementation and its calibration analysis were reviewed by an
+independent model (OpenAI Codex) before being finalized. That review:
+
+- confirmed the core calibration finding (at `m=s`, seed 0 does not
+  homogenize even after 300,000 generations — a genuine fixed point,
+  not slow convergence)
+- caught that the middle `m/s` ratios (1 and 2) are seed-dependent
+  (roughly 50/50 across 20 seeds), which the first draft of this README
+  stated too deterministically — the table and language above were
+  corrected in response
+- flagged the missing parameter validation on `s` and `m` (now added:
+  both raise `ValueError` outside `[0, 1]`) and the missing
+  `generations < 0` guard (now raises `ValueError` instead of silently
+  returning the initial condition)
+- flagged the absence of tests (now added: `test_model.py`, 13 tests)
