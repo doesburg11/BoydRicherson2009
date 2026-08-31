@@ -139,6 +139,34 @@ own traced boundary curves (a grid classification at 40x40 resolution
 rather than an analytically-traced boundary; see `generate_figure.py`'s
 own module docstring).
 
+## Key Message
+
+**Selective migration only reliably spreads the better behavior when
+local conformity is strong enough to preserve differences between
+groups in the first place.** Two very different things can happen, and
+which one you get depends entirely on the `m0/beta` ratio:
+
+- **Weak migration relative to local adaptation** (green zone above):
+  the outcome is driven by *which behavior is actually better*. The
+  group-beneficial behavior spreads and becomes dominant — though it
+  never fully wins; some cultural diversity always survives. Starting
+  conditions (which society was bigger) barely matter here.
+- **Strong migration** (yellow/blue zone above): the outcome is instead
+  driven almost entirely by *accidents of initial size* — whichever
+  society started bigger drags the whole population toward its
+  behavior, regardless of whether that behavior was actually the
+  better one. Migration in this regime isn't "voting for the best
+  option" — it's "whoever has the most votes wins," even if their
+  choice was worse.
+
+So the paper's punchline is a caution against a naive
+"immigration = improvement" story: selective migration toward better
+societies is a real and powerful force, but it only functions as a
+genuine quality filter when it's weak enough to let local cultural
+selection do its work first. Turn up migration too far, and the same
+mechanism stops selecting for "better" and starts just amplifying
+whichever society happened to be bigger to begin with.
+
 ## Running It
 
 ```bash
