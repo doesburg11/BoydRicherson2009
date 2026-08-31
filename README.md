@@ -8,7 +8,7 @@ model in Section 3(b)-(c) of:
 > 3281-3288. https://doi.org/10.1098/rstb.2009.0134
 
 This follows the same pattern as this author's other named-paper
-replications ([MitteldorfWilson2000](https://github.com/doesburg11/MitteldorfWilson2000),
+replications (e.g.
 [AckleyLittman1994](https://github.com/doesburg11/AckleyLittman1994)):
 a standalone, from-scratch implementation built directly from the paper's
 text, with no author-released code to check against.
