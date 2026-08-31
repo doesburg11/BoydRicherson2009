@@ -308,9 +308,11 @@ seed sweeps described here are the honest record of what a "typical" or
 
 Not a reproduction of anything in the paper — the paper only shows the
 three example ratios above. `generate_ratio_sweep.py` instead sweeps
-`m/s = 0.1, 0.2, ..., 1.0` at one fixed seed (0), so the transition from
-patchwork to homogenization can be read directly as a continuous
-progression rather than inferred from three snapshots:
+`m/s = 0.1, 0.2, ..., 1.0, 2.0, ..., 5.0` (fine 0.1 steps up to the
+paper's own regime boundary, then coarse 1.0 steps beyond it) at one
+fixed seed (0), so the transition from patchwork to homogenization can
+be read directly as a continuous progression rather than inferred from
+three snapshots:
 
 ![m/s ratio sweep](output/ratio_sweep.png)
 
@@ -321,6 +323,11 @@ a genuine equilibrium. Notice that even at `m/s=1.0`, this seed has not
 fully homogenized — three bands remain (yellow / white / yellow-green /
 green) — which is the same seed-dependence documented in the
 calibration table above, just visualized as a sweep instead of a table.
+The extended range beyond `m/s=1.0` confirms this is not a sign of
+under-convergence, though: the last domain wall for this seed only
+fully collapses between `m/s=2.0` and `m/s=3.0`, and stays collapsed
+all the way to `m/s=5.0` — full homogenization, once reached, is a
+stable end state, not something that reappears at higher ratios.
 
 ## What This Model Does Not Show
 
