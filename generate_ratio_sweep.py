@@ -30,7 +30,7 @@ RATIOS = [round(i / 10, 1) for i in range(1, 11)] + [2.0, 3.0, 4.0, 5.0]
 
 
 def main() -> None:
-    fig, axes = plt.subplots(2, 7, figsize=(19, 6))
+    fig, axes = plt.subplots(2, 7, figsize=(19, 7))
     for ax, ratio in zip(axes.flat, RATIOS):
         m = S * ratio
         freqs = simulate(s=S, m=m, generations=GENERATIONS, seed=SEED)
@@ -49,6 +49,7 @@ def main() -> None:
         f"{GENERATIONS:,} generations)"
     )
     fig.tight_layout(rect=(0, 0.12, 1, 1))
+    fig.subplots_adjust(hspace=0.5)
     add_trait_legend(fig)
     out_dir = Path(__file__).parent / "output"
     out_dir.mkdir(exist_ok=True)
