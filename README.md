@@ -381,3 +381,17 @@ independent model (OpenAI Codex) before being finalized. That review:
   `generations < 0` guard (now raises `ValueError` instead of silently
   returning the initial condition)
 - flagged the absence of tests (now added: `test_model.py`, 13 tests)
+
+## References
+
+- Boyd, R., & Richerson, P. J. (2009). Culture and the evolution of
+  human cooperation. *Philosophical Transactions of the Royal Society
+  B*, 364(1533), 3281-3288. https://doi.org/10.1098/rstb.2009.0134 —
+  the paper this repository replicates (Section 3b-c, Figure 1).
+- Boyd, R., & Richerson, P. J. (2009). Voting with your feet: payoff
+  biased migration and the evolution of group beneficial behavior.
+  *Journal of Theoretical Biology*, 257(2), 331-339.
+  https://doi.org/10.1016/j.jtbi.2008.12.007 — the companion paper
+  behind the "voting with your feet" migration model mentioned in
+  passing above (see "What This Model Does Not Show"); not itself
+  replicated here.
