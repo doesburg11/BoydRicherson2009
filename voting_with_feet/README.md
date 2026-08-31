@@ -146,26 +146,40 @@ local conformity is strong enough to preserve differences between
 groups in the first place.** Two very different things can happen, and
 which one you get depends entirely on the `m0/beta` ratio:
 
-- **Weak migration relative to local adaptation** (green zone above):
-  the outcome is driven by *which behavior is actually better*. The
-  group-beneficial behavior spreads and becomes dominant — though it
-  never fully wins; some cultural diversity always survives. Starting
-  conditions (which society was bigger) barely matter here.
-- **Strong migration** (yellow/blue zone above): the outcome is instead
-  driven almost entirely by *accidents of initial size* — whichever
-  society started bigger drags the whole population toward its
-  behavior, regardless of whether that behavior was actually the
+- **Below the threshold** (green zone above): the outcome is driven by
+  *which behavior is actually better*. The group-beneficial behavior
+  spreads into the other society and becomes more common there — though
+  it never fully wins; some cultural diversity always survives.
+  Starting conditions (which society was bigger) barely matter here.
+- **Above the threshold** (yellow/blue zone above): the outcome is
+  instead driven almost entirely by *accidents of initial size* —
+  whichever society started bigger drags the whole population toward
+  its behavior, regardless of whether that behavior was actually the
   better one. Migration in this regime isn't "voting for the best
   option" — it's "whoever has the most votes wins," even if their
   choice was worse.
 
+**This is a cliff, not a sweet spot — there is no "too little
+migration" failure mode to balance against "too much."** Directly
+checking the model at `d=0.2, h=0.2, g=0.4, mu=1` confirms this: even
+at `m0=0.0001` (a trickle), the good behavior still reaches the other
+society, just to a small degree (`x2=0.0003`); as `m0` rises the spread
+grows smoothly and continuously (`x2=0.0035` at `m0=0.001`, `0.0395` at
+`m0=0.01`, `0.0956` at `m0=0.02`) — until crossing the threshold
+(`m0≈0.025` here), where the system snaps straight to full
+homogenization (`x1=x2=1` by `m0=0.03`). So within the whole green
+region, *more* migration is strictly better, not worse — it spreads the
+good norm further while diversity still survives. The only thing to
+avoid is crossing the cliff into the region where migration stops being
+selective and starts just being decided by size.
+
 So the paper's punchline is a caution against a naive
-"immigration = improvement" story: selective migration toward better
-societies is a real and powerful force, but it only functions as a
-genuine quality filter when it's weak enough to let local cultural
-selection do its work first. Turn up migration too far, and the same
-mechanism stops selecting for "better" and starts just amplifying
-whichever society happened to be bigger to begin with.
+"immigration = improvement" story, but not the caution "keep migration
+moderate." It's narrower than that: selective migration toward better
+societies is a real and powerful force, and more of it (up to the
+threshold) is better, not worse — but push it past that threshold, and
+the same mechanism stops selecting for "better" and starts just
+amplifying whichever society happened to be bigger to begin with.
 
 ## Running It
 
