@@ -159,27 +159,79 @@ which one you get depends entirely on the `m0/beta` ratio:
   option" — it's "whoever has the most votes wins," even if their
   choice was worse.
 
-**This is a cliff, not a sweet spot — there is no "too little
-migration" failure mode to balance against "too much."** Directly
-checking the model at `d=0.2, h=0.2, g=0.4, mu=1` confirms this: even
-at `m0=0.0001` (a trickle), the good behavior still reaches the other
-society, just to a small degree (`x2=0.0003`); as `m0` rises the spread
-grows smoothly and continuously (`x2=0.0035` at `m0=0.001`, `0.0395` at
-`m0=0.01`, `0.0956` at `m0=0.02`) — until crossing the threshold
+### There Is A Cliff, Not A Sweet Spot
+
+There is no "too little migration" failure mode to balance against "too
+much." Directly checking the model at `d=0.2, h=0.2, g=0.4, mu=1`,
+`p0=0.5`: even at `m0=0.0001` (a trickle), the good behavior still
+reaches the other society, just to a small degree; as `m0` rises the
+spread grows smoothly and continuously — until crossing a threshold
 (`m0≈0.025` here), where the system snaps straight to full
-homogenization (`x1=x2=1` by `m0=0.03`). So within the whole green
-region, *more* migration is strictly better, not worse — it spreads the
-good norm further while diversity still survives. The only thing to
-avoid is crossing the cliff into the region where migration stops being
-selective and starts just being decided by size.
+homogenization:
+
+| `m0` | `x1` (society 1) | `x2` (society 2) | pop-wide behavior-1 frequency |
+|------|------|------|------|
+| 0.0001 | 0.9999 | 0.0003 | 0.696 |
+| 0.001  | 0.9990 | 0.0035 | 0.701 |
+| 0.005  | 0.9950 | 0.0185 | 0.704 |
+| 0.01   | 0.9902 | 0.0395 | 0.709 |
+| 0.02   | 0.9814 | 0.0956 | 0.727 |
+| 0.024  | 0.9788 | 0.1319 | 0.741 |
+| 0.03   | 1.0000 | 1.0000 | 1.000 (crossed the cliff) |
+
+So within the whole green region, more migration does spread the good
+*label* further, monotonically, right up to the cliff — there's no
+lower-migration penalty pulling the optimum toward some moderate middle
+value.
+
+### But "More Of The Good Label" Is Not The Same As "More Welfare"
+
+Checking the model's own payoff structure (not just which behavior
+label is more frequent) tells a different story. Population-wide
+*average payoff* — the model's actual measure of "better," since
+`average_payoff` is literally what `g`/`h`/`d` are defined in terms of —
+is roughly flat, and if anything *falls slightly*, over that same range:
+
+| `m0` | pop-wide avg payoff |
+|------|------|
+| 0.0001 | 1.4784 |
+| 0.001  | 1.4785 |
+| 0.005  | 1.4727 |
+| 0.01   | 1.4657 |
+| 0.02   | 1.4530 |
+| 0.024  | 1.4492 |
+
+The reason these two tables disagree: migration pulls a growing
+minority of society 2 into carrying behavior 1 — but behavior 1 stays
+rare there throughout this range (`x2` never approaches `x_hat=0.4`),
+so those individuals get the *minority-carrier* payoff, which is worse
+than just staying with society 2's own local consensus (behavior 2).
+More people nominally carrying the "group-beneficial" label doesn't
+raise welfare if they're stuck as an unrewarded minority in a society
+where it hasn't taken over. "More migration is better" is true for the
+frequency of a label; it is not true for the thing the label was
+supposed to track.
+
+Compare both tables against what happens *if* the cliff is crossed:
+full homogenization gives everyone either `W1(1)=1+d+g=1.6` (behavior 1
+wins — better than *any* green-zone welfare level above) or
+`W2(0)=1+d=1.2` (behavior 2 wins — worse than *any* green-zone welfare
+level above). So the honest summary is: **the green zone is a
+mediocre-but-stable welfare plateau (~1.44-1.48 here) that more
+migration cannot actually improve — it can only shift more people into
+a losing minority position. Crossing the cliff is the only way to reach
+the genuinely better outcome (1.6), but it is a gamble against also
+landing on the genuinely worse one (1.2), decided by which society
+started bigger** (see the chart: the same cliff lands in yellow at high
+initial `p0`, blue at low `p0`).
 
 So the paper's punchline is a caution against a naive
-"immigration = improvement" story, but not the caution "keep migration
-moderate." It's narrower than that: selective migration toward better
-societies is a real and powerful force, and more of it (up to the
-threshold) is better, not worse — but push it past that threshold, and
-the same mechanism stops selecting for "better" and starts just
-amplifying whichever society happened to be bigger to begin with.
+"immigration = improvement" story, but the more precise version of that
+caution is: selective migration reliably increases how many people
+carry the group-beneficial label, but that alone does not reliably
+increase welfare, because a growing minority of label-carriers stuck
+below the local tipping point are worse off, not better off, for having
+switched.
 
 ## Running It
 
