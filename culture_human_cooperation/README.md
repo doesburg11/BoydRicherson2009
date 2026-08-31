@@ -306,6 +306,29 @@ seed sweeps described here are the honest record of what a "typical" or
   what `m/s=0.2` looks like instead, which clusters much more but
   departs from the paper's stated ratio).
 
+## Key Message
+
+**Whether cultural (or genetic) variation between groups survives comes
+down to one ratio: local adaptation speed (`s`) versus migration (`m`).**
+Selection pulls each group toward its own local answer; migration pulls
+neighboring groups toward matching each other. Which one wins decides
+whether the world ends up as one shared culture (high `m/s`, panel a)
+or a lasting patchwork of different local norms (low `m/s`, panel c) —
+there is no third option and no in-between outcome that lasts.
+
+This simple mechanism is the paper's answer to a real puzzle: why do
+human societies differ from each other so much more than other primate
+groups do? Not because humans have more "traits" to vary on, but
+because culture can sustain a far lower `m/s` than genetics ever could
+— genetics is stuck near `m/s≈25` (fast dispersal, weak selection),
+which homogenizes primate groups before real differences can build up,
+while culture gets both a faster effective `s` (rapid social learning)
+and a lower effective `m` (migrants assimilate to local norms instead
+of diluting them). That gap is precisely what preserves the standing
+cultural variation between groups that cultural group selection needs
+as its raw material — remove that gap, and there is nothing left for
+group selection to act on.
+
 ## Supplementary: Full m/s Sweep
 
 Not a reproduction of anything in the paper — the paper only shows the
