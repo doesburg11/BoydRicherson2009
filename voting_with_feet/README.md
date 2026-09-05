@@ -12,6 +12,19 @@ This is the companion paper to the one replicated in
 authors, same year, but a distinct model and question, hence its own
 subfolder rather than being folded into that one.
 
+**Key message:** If groups retain their own culture well, the
+attractive institutions always gain ground — but they never drive the
+alternatives to extinction. If migration dominates, things can also go
+the other way: the initial size of the societies helps determine which
+variant wins, and a large, less attractive society can swamp a smaller
+attractive one.
+
+(See "Key Message" further below for the fuller version, including a
+caveat this summary — and the paper's own stated conclusion — glosses
+over: "gain ground" holds for the *frequency* of the attractive
+behavior, but checking the model's own payoff structure directly shows
+population-wide *welfare* does not rise the same way.)
+
 ## What The Paper's Model Argues
 
 Human migration is nonrandom: people tend to move from societies they
